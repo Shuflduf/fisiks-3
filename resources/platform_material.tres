@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://u5mj8po5xo5y"]
+
+[ext_resource type="Texture2D" uid="uid://c2t146qpt7eb7" path="res://assets/textures/texture_08.png" id="1_lxty3"]
+
+[resource]
+albedo_texture = ExtResource("1_lxty3")
+roughness = 0.0
+rim_tint = 1.0
+uv1_triplanar = true
