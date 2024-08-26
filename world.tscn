@@ -69,5 +69,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
 shape = SubResource("BoxShape3D_bo2bw")
 
 [connection signal="platform_size_changed" from="UI" to="." method="_on_ui_platform_size_changed"]
+[connection signal="random_offset_changed" from="UI" to="." method="_on_ui_random_offset_changed"]
 [connection signal="spawn_offset_changed" from="UI" to="." method="_on_ui_spawn_offset_changed"]
 [connection signal="body_entered" from="Bounds" to="." method="_on_bounds_body_entered"]

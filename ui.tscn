@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvr5nmb0qdd8i"]
+[gd_scene load_steps=3 format=3 uid="uid://bvr5nmb0qdd8i"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_862l2"]
+[ext_resource type="PackedScene" uid="uid://cqkiuh1yuoh88" path="res://base_value.tscn" id="2_7j7e7"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -38,59 +39,57 @@ metadata/_tab_index = 0
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/World"]
 layout_mode = 2
 
-[node name="PlatformSize" type="HBoxContainer" parent="MarginContainer/TabContainer/World/VBoxContainer"]
+[node name="PlatformSize" parent="MarginContainer/TabContainer/World/VBoxContainer" instance=ExtResource("2_7j7e7")]
 layout_mode = 2
+signal_name = "platform_size_changed"
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/World/VBoxContainer/PlatformSize"]
+[node name="SpawnOffset" parent="MarginContainer/TabContainer/World/VBoxContainer" instance=ExtResource("2_7j7e7")]
 layout_mode = 2
-text = "Platform Size"
+signal_name = "spawn_offset_changed"
 
-[node name="PlatSlider" type="HSlider" parent="MarginContainer/TabContainer/World/VBoxContainer/PlatformSize"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-min_value = 1.0
-value = 30.0
-
-[node name="PlatSpinBox" type="SpinBox" parent="MarginContainer/TabContainer/World/VBoxContainer/PlatformSize"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-min_value = 1.0
-value = 30.0
-suffix = "m"
-
-[node name="SpawnOffset" type="HBoxContainer" parent="MarginContainer/TabContainer/World/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/World/VBoxContainer/SpawnOffset"]
-layout_mode = 2
+[node name="Label" parent="MarginContainer/TabContainer/World/VBoxContainer/SpawnOffset" index="0"]
 text = "Spawn Offset"
 
-[node name="SpawnSlider" type="HSlider" parent="MarginContainer/TabContainer/World/VBoxContainer/SpawnOffset"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 0)
+[node name="ValueSlider" parent="MarginContainer/TabContainer/World/VBoxContainer/SpawnOffset" index="1"]
+max_value = 80.0
+value = 20.0
+
+[node name="ValueSpinBox" parent="MarginContainer/TabContainer/World/VBoxContainer/SpawnOffset" index="2"]
+max_value = 80.0
+value = 20.0
+
+[node name="RandomOffset" parent="MarginContainer/TabContainer/World/VBoxContainer" instance=ExtResource("2_7j7e7")]
+layout_mode = 2
+signal_name = "random_offset_changed"
+
+[node name="Label" parent="MarginContainer/TabContainer/World/VBoxContainer/RandomOffset" index="0"]
+text = "Random Offset"
+
+[node name="ValueSlider" parent="MarginContainer/TabContainer/World/VBoxContainer/RandomOffset" index="1"]
+min_value = 0.0
+max_value = 10.0
+value = 1.0
+
+[node name="ValueSpinBox" parent="MarginContainer/TabContainer/World/VBoxContainer/RandomOffset" index="2"]
+min_value = 0.0
+max_value = 10.0
+value = 1.0
+
+[node name="RandomRotation" type="HBoxContainer" parent="MarginContainer/TabContainer/World/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/World/VBoxContainer/RandomRotation"]
+layout_mode = 2
+text = "Random Rotation"
+
+[node name="CheckBox" type="CheckBox" parent="MarginContainer/TabContainer/World/VBoxContainer/RandomRotation"]
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
-min_value = 1.0
-max_value = 80.0
-value = 20.0
+text = "Enabled"
 
-[node name="SpawnSpinBox" type="SpinBox" parent="MarginContainer/TabContainer/World/VBoxContainer/SpawnOffset"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-min_value = 1.0
-max_value = 80.0
-value = 20.0
-suffix = "m"
+[connection signal="toggled" from="MarginContainer/TabContainer/World/VBoxContainer/RandomRotation/CheckBox" to="." method="_on_check_box_toggled"]
 
-[connection signal="value_changed" from="MarginContainer/TabContainer/World/VBoxContainer/PlatformSize/PlatSlider" to="." method="_on_plat_slider_value_changed"]
-[connection signal="value_changed" from="MarginContainer/TabContainer/World/VBoxContainer/PlatformSize/PlatSpinBox" to="." method="_on_plat_spin_box_value_changed"]
-[connection signal="value_changed" from="MarginContainer/TabContainer/World/VBoxContainer/SpawnOffset/SpawnSlider" to="." method="_on_spawn_slider_value_changed"]
-[connection signal="value_changed" from="MarginContainer/TabContainer/World/VBoxContainer/SpawnOffset/SpawnSpinBox" to="." method="_on_spawn_spin_box_value_changed"]
+[editable path="MarginContainer/TabContainer/World/VBoxContainer/PlatformSize"]
+[editable path="MarginContainer/TabContainer/World/VBoxContainer/SpawnOffset"]
+[editable path="MarginContainer/TabContainer/World/VBoxContainer/RandomOffset"]

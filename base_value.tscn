@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqkiuh1yuoh88"]
+
+[ext_resource type="Script" path="res://base_value.gd" id="1_t3tky"]
+
+[node name="Value" type="HBoxContainer"]
+script = ExtResource("1_t3tky")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Platform Size"
+
+[node name="ValueSlider" type="HSlider" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+min_value = 1.0
+value = 30.0
+
+[node name="ValueSpinBox" type="SpinBox" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+min_value = 1.0
+value = 30.0
+suffix = "m"
+
+[connection signal="value_changed" from="ValueSlider" to="." method="_on_value_slider_value_changed"]
+[connection signal="value_changed" from="ValueSpinBox" to="." method="_on_value_spin_box_value_changed"]
