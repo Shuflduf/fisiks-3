@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://n2b7g2sgt2f2"]
+[gd_scene load_steps=11 format=3 uid="uid://n2b7g2sgt2f2"]
 
 [ext_resource type="Texture2D" uid="uid://cshdijxf5xady" path="res://SkyHDR.hdr" id="1_bs4lu"]
 [ext_resource type="Script" path="res://world.gd" id="1_e1a2b"]
 [ext_resource type="PackedScene" uid="uid://bp7ddgwveia6k" path="res://box.tscn" id="2_qvrly"]
 [ext_resource type="Texture2D" uid="uid://bajgtmlqrlhjv" path="res://texture_09.png" id="2_xy5k0"]
 [ext_resource type="Script" path="res://cam_pivot.gd" id="5_8nmvc"]
+[ext_resource type="PackedScene" uid="uid://bvr5nmb0qdd8i" path="res://ui.tscn" id="6_f3m38"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2jmea"]
 panorama = ExtResource("1_bs4lu")
@@ -16,6 +17,9 @@ sky_material = SubResource("PanoramaSkyMaterial_2jmea")
 background_mode = 2
 sky = SubResource("Sky_lnbfj")
 tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4m1kp"]
@@ -33,13 +37,14 @@ environment = SubResource("Environment_kpd4p")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="Platform" type="CSGBox3D" parent="."]
 material_override = SubResource("StandardMaterial3D_4m1kp")
 use_collision = true
 size = Vector3(30, 1, 30)
 
 [node name="SpawnPos" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23, 0)
+gizmo_extents = 1.0
 
 [node name="Boxes" type="Node3D" parent="."]
 
@@ -50,3 +55,7 @@ script = ExtResource("5_8nmvc")
 
 [node name="Camera3D" type="Camera3D" parent="HPivot/VPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 39.005)
+
+[node name="UI" parent="." instance=ExtResource("6_f3m38")]
+
+[connection signal="platform_size_changed" from="UI" to="." method="_on_ui_platform_size_changed"]

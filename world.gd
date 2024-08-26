@@ -14,3 +14,8 @@ func _physics_process(_delta: float) -> void:
 func _process(_delta: float) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
 		print("AH")
+
+
+func _on_ui_platform_size_changed(new_size: int) -> void:
+	$Platform.size.x = new_size
+	$Platform.size.z = new_size
