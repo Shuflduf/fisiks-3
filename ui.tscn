@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bvr5nmb0qdd8i"]
+[gd_scene load_steps=17 format=3 uid="uid://bvr5nmb0qdd8i"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_862l2"]
 [ext_resource type="PackedScene" uid="uid://cqkiuh1yuoh88" path="res://base_value.tscn" id="2_7j7e7"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dxwdr57yppg5w" path="res://bool_property.tscn" id="7_dokbn"]
 [ext_resource type="Script" path="res://color_property.gd" id="8_s2fwc"]
 [ext_resource type="Texture2D" uid="uid://c2t146qpt7eb7" path="res://assets/textures/texture_08.png" id="9_2hnf6"]
+[ext_resource type="Script" path="res://texture_property.gd" id="9_6dr4b"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_bs5hk"]
 panorama = ExtResource("4_g3kld")
@@ -234,6 +235,7 @@ color = Color(1, 1, 1, 1)
 
 [node name="Texture" type="HBoxContainer" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
+script = ExtResource("9_6dr4b")
 
 [node name="Label" type="Label" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Texture"]
 layout_mode = 2
@@ -241,12 +243,18 @@ text = "Texture
 "
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Texture"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 10
 texture = ExtResource("9_2hnf6")
 expand_mode = 1
-stretch_mode = 5
+
+[node name="TextureSelection" type="Popup" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Texture"]
+size = Vector2i(158, 50)
+
+[node name="Textures" type="HBoxContainer" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Texture/TextureSelection"]
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/TabContainer/Materials/HBoxContainer2"]
 layout_mode = 2
@@ -266,10 +274,11 @@ render_target_update_mode = 4
 [node name="Camera3D" type="Camera3D" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/SubViewportContainer/SubViewport"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/SubViewportContainer/SubViewport"]
-transform = Transform3D(-0.985106, 0, -0.171945, 0, 1, 0, 0.171945, 0, -0.985106, 0, 0, -1)
+transform = Transform3D(0.223836, 0, 0.974627, 0, 1, 0, -0.974627, 0, 0.223836, 0, 0, -1)
 mesh = SubResource("SphereMesh_0o0ly")
 
 [connection signal="color_changed" from="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Color/ColorPickerButton" to="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Color" method="_on_color_picker_button_color_changed"]
+[connection signal="gui_input" from="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Texture/TextureRect" to="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Texture" method="_on_texture_rect_gui_input"]
 
 [editable path="MarginContainer/TabContainer/World/VBoxContainer/PlatformSize"]
 [editable path="MarginContainer/TabContainer/World/VBoxContainer/SpawnOffset"]
