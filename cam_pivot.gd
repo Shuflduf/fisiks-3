@@ -15,15 +15,14 @@ func _input(event):
 
 		rotate_y(deg_to_rad(-event.relative.x * sensitivity))
 		vpivot.rotate_x(deg_to_rad(-event.relative.y * sensitivity))
-		#vpivot.rotate_z(deg_to_rad(-event.relative.y * sensitivity))
-		#vpivot.rotation.z = clamp(vpivot.rotation.z, deg_to_rad(-89), deg_to_rad(0))
+		vpivot.rotation.x = clamp(vpivot.rotation.x, deg_to_rad(-89), deg_to_rad(0))
 
 	if event is InputEventMouseButton:
 		if event.is_pressed():
-			if event.button_index == MOUSE_BUTTON_WHEEL_UP and camera.position.x < -max_zoom_in :
-				camera.position.x += 1 * zoom_speed
-			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN and camera.position.x > -max_zoom_out :
-				camera.position.x -= 1 * zoom_speed
+			if event.button_index == MOUSE_BUTTON_WHEEL_UP and camera.position.z > max_zoom_in :
+				camera.position.z -= 1 * zoom_speed
+			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN and camera.position.z < max_zoom_out :
+				camera.position.z += 1 * zoom_speed
 
 
 func _physics_process(_delta):
@@ -38,4 +37,4 @@ func _physics_process(_delta):
 func _on_command_input_reset_camera_button():
 	hpivot.rotation = Vector3(0, deg_to_rad(90), 0)
 	vpivot.rotation = Vector3(0, 0, deg_to_rad(-30))
-	camera.position.x = -30
+	camera.position.z = -30
