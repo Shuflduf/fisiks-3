@@ -17,5 +17,17 @@ func _process(_delta: float) -> void:
 
 
 func _on_ui_platform_size_changed(new_size: int) -> void:
+	for i in boxes.get_children():
+		if i is not RigidBody3D:
+			continue
+		i.sleeping = false
 	$Platform.size.x = new_size
 	$Platform.size.z = new_size
+
+
+func _on_bounds_body_entered(body: Node3D) -> void:
+	body.queue_free()
+
+
+func _on_ui_spawn_offset_changed(new_offset: int) -> void:
+	$SpawnPos.position.y = new_offset

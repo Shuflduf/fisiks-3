@@ -63,5 +63,34 @@ min_value = 1.0
 value = 30.0
 suffix = "m"
 
+[node name="SpawnOffset" type="HBoxContainer" parent="MarginContainer/TabContainer/World/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/World/VBoxContainer/SpawnOffset"]
+layout_mode = 2
+text = "Spawn Offset"
+
+[node name="SpawnSlider" type="HSlider" parent="MarginContainer/TabContainer/World/VBoxContainer/SpawnOffset"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+min_value = 1.0
+max_value = 80.0
+value = 20.0
+
+[node name="SpawnSpinBox" type="SpinBox" parent="MarginContainer/TabContainer/World/VBoxContainer/SpawnOffset"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+min_value = 1.0
+max_value = 80.0
+value = 20.0
+suffix = "m"
+
 [connection signal="value_changed" from="MarginContainer/TabContainer/World/VBoxContainer/PlatformSize/PlatSlider" to="." method="_on_plat_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/TabContainer/World/VBoxContainer/PlatformSize/PlatSpinBox" to="." method="_on_plat_spin_box_value_changed"]
+[connection signal="value_changed" from="MarginContainer/TabContainer/World/VBoxContainer/SpawnOffset/SpawnSlider" to="." method="_on_spawn_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/TabContainer/World/VBoxContainer/SpawnOffset/SpawnSpinBox" to="." method="_on_spawn_spin_box_value_changed"]
