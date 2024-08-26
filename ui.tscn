@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvr5nmb0qdd8i"]
+[gd_scene load_steps=4 format=3 uid="uid://bvr5nmb0qdd8i"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_862l2"]
 [ext_resource type="PackedScene" uid="uid://cqkiuh1yuoh88" path="res://base_value.tscn" id="2_7j7e7"]
+[ext_resource type="PackedScene" uid="uid://dhih6qowjgi80" path="res://base_bool_value.tscn" id="3_2bo5g"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -26,9 +27,10 @@ theme_override_constants/margin_bottom = 50
 
 [node name="TabContainer" type="TabContainer" parent="MarginContainer"]
 layout_mode = 2
-current_tab = 0
+current_tab = 1
 
 [node name="World" type="MarginContainer" parent="MarginContainer/TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
@@ -38,6 +40,7 @@ metadata/_tab_index = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/World"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="PlatformSize" parent="MarginContainer/TabContainer/World/VBoxContainer" instance=ExtResource("2_7j7e7")]
 layout_mode = 2
@@ -68,28 +71,76 @@ text = "Random Offset"
 [node name="ValueSlider" parent="MarginContainer/TabContainer/World/VBoxContainer/RandomOffset" index="1"]
 min_value = 0.0
 max_value = 10.0
+step = 0.1
 value = 1.0
 
 [node name="ValueSpinBox" parent="MarginContainer/TabContainer/World/VBoxContainer/RandomOffset" index="2"]
 min_value = 0.0
 max_value = 10.0
+step = 0.1
 value = 1.0
 
-[node name="RandomRotation" type="HBoxContainer" parent="MarginContainer/TabContainer/World/VBoxContainer"]
+[node name="RandomRotation" parent="MarginContainer/TabContainer/World/VBoxContainer" instance=ExtResource("3_2bo5g")]
+layout_mode = 2
+signal_name = "random_rotation_toggled"
+
+[node name="Label" parent="MarginContainer/TabContainer/World/VBoxContainer/RandomRotation" index="0"]
+text = "Random Rotation
+"
+
+[node name="Graphics" type="MarginContainer" parent="MarginContainer/TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Graphics"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/World/VBoxContainer/RandomRotation"]
+[node name="SSR" parent="MarginContainer/TabContainer/Graphics/VBoxContainer" instance=ExtResource("3_2bo5g")]
 layout_mode = 2
-text = "Random Rotation"
+signal_name = "ssr_toggled"
 
-[node name="CheckBox" type="CheckBox" parent="MarginContainer/TabContainer/World/VBoxContainer/RandomRotation"]
+[node name="Label" parent="MarginContainer/TabContainer/Graphics/VBoxContainer/SSR" index="0"]
+text = "SSR"
+
+[node name="CheckBox" parent="MarginContainer/TabContainer/Graphics/VBoxContainer/SSR" index="1"]
+button_pressed = true
+
+[node name="SSAO" parent="MarginContainer/TabContainer/Graphics/VBoxContainer" instance=ExtResource("3_2bo5g")]
 layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-text = "Enabled"
+signal_name = "ssao_toggled"
 
-[connection signal="toggled" from="MarginContainer/TabContainer/World/VBoxContainer/RandomRotation/CheckBox" to="." method="_on_check_box_toggled"]
+[node name="Label" parent="MarginContainer/TabContainer/Graphics/VBoxContainer/SSAO" index="0"]
+text = "SSAO"
+
+[node name="CheckBox" parent="MarginContainer/TabContainer/Graphics/VBoxContainer/SSAO" index="1"]
+button_pressed = true
+
+[node name="SSIL" parent="MarginContainer/TabContainer/Graphics/VBoxContainer" instance=ExtResource("3_2bo5g")]
+layout_mode = 2
+signal_name = "ssil_toggled"
+
+[node name="Label" parent="MarginContainer/TabContainer/Graphics/VBoxContainer/SSIL" index="0"]
+text = "SSIL"
+
+[node name="CheckBox" parent="MarginContainer/TabContainer/Graphics/VBoxContainer/SSIL" index="1"]
+button_pressed = true
+
+[node name="SDFGI" parent="MarginContainer/TabContainer/Graphics/VBoxContainer" instance=ExtResource("3_2bo5g")]
+layout_mode = 2
+signal_name = "sdfgi_toggled"
+
+[node name="Label" parent="MarginContainer/TabContainer/Graphics/VBoxContainer/SDFGI" index="0"]
+text = "SDFGI"
 
 [editable path="MarginContainer/TabContainer/World/VBoxContainer/PlatformSize"]
 [editable path="MarginContainer/TabContainer/World/VBoxContainer/SpawnOffset"]
 [editable path="MarginContainer/TabContainer/World/VBoxContainer/RandomOffset"]
+[editable path="MarginContainer/TabContainer/World/VBoxContainer/RandomRotation"]
+[editable path="MarginContainer/TabContainer/Graphics/VBoxContainer/SSR"]
+[editable path="MarginContainer/TabContainer/Graphics/VBoxContainer/SSAO"]
+[editable path="MarginContainer/TabContainer/Graphics/VBoxContainer/SSIL"]
+[editable path="MarginContainer/TabContainer/Graphics/VBoxContainer/SDFGI"]

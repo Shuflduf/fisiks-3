@@ -6,7 +6,21 @@ signal platform_size_changed(new_size: int)
 signal spawn_offset_changed(new_offset: int)
 @warning_ignore("unused_signal")
 signal random_offset_changed(new_offset: float)
+@warning_ignore("unused_signal")
+signal random_rotation_toggled(enabled: bool)
 
+@warning_ignore("unused_signal")
+signal ssr_toggled(enabled: bool)
+@warning_ignore("unused_signal")
+signal ssao_toggled(enabled: bool)
+@warning_ignore("unused_signal")
+signal ssil_toggled(enabled: bool)
+@warning_ignore("unused_signal")
+signal sdfgi_toggled(enabled: bool)
 
-func _on_check_box_toggled(toggled_on: bool) -> void:
-	get_parent().random_rotation = toggled_on
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("options"):
+		visible = not visible
+
+func _ready() -> void:
+	hide()

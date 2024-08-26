@@ -49,3 +49,7 @@ func _on_ui_spawn_offset_changed(new_offset: int) -> void:
 
 func _on_ui_random_offset_changed(new_offset: float) -> void:
 	random_offset = new_offset
+
+
+func _on_ui_random_rotation_toggled(enabled: bool) -> void:
+	random_rotation = enabled

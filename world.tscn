@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://n2b7g2sgt2f2"]
+[gd_scene load_steps=13 format=3 uid="uid://n2b7g2sgt2f2"]
 
 [ext_resource type="Texture2D" uid="uid://cshdijxf5xady" path="res://SkyHDR.hdr" id="1_bs4lu"]
 [ext_resource type="Script" path="res://world.gd" id="1_e1a2b"]
 [ext_resource type="PackedScene" uid="uid://bp7ddgwveia6k" path="res://box.tscn" id="2_qvrly"]
 [ext_resource type="Texture2D" uid="uid://bajgtmlqrlhjv" path="res://texture_09.png" id="2_xy5k0"]
+[ext_resource type="Script" path="res://world_environment.gd" id="4_i2how"]
 [ext_resource type="Script" path="res://cam_pivot.gd" id="5_8nmvc"]
 [ext_resource type="PackedScene" uid="uid://bvr5nmb0qdd8i" path="res://ui.tscn" id="6_f3m38"]
 
@@ -24,6 +25,7 @@ glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4m1kp"]
 albedo_texture = ExtResource("2_xy5k0")
+roughness = 0.0
 uv1_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bo2bw"]
@@ -35,6 +37,7 @@ box_scene = ExtResource("2_qvrly")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kpd4p")
+script = ExtResource("4_i2how")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
@@ -70,5 +73,10 @@ shape = SubResource("BoxShape3D_bo2bw")
 
 [connection signal="platform_size_changed" from="UI" to="." method="_on_ui_platform_size_changed"]
 [connection signal="random_offset_changed" from="UI" to="." method="_on_ui_random_offset_changed"]
+[connection signal="random_rotation_toggled" from="UI" to="." method="_on_ui_random_rotation_toggled"]
+[connection signal="sdfgi_toggled" from="UI" to="WorldEnvironment" method="_on_ui_sdfgi_toggled"]
 [connection signal="spawn_offset_changed" from="UI" to="." method="_on_ui_spawn_offset_changed"]
+[connection signal="ssao_toggled" from="UI" to="WorldEnvironment" method="_on_ui_ssao_toggled"]
+[connection signal="ssil_toggled" from="UI" to="WorldEnvironment" method="_on_ui_ssil_toggled"]
+[connection signal="ssr_toggled" from="UI" to="WorldEnvironment" method="_on_ui_ssr_toggled"]
 [connection signal="body_entered" from="Bounds" to="." method="_on_bounds_body_entered"]
