@@ -5,8 +5,12 @@ extends Node3D
 @onready var spawn_pos: Marker3D = $SpawnPos
 @onready var boxes: Node3D = $Boxes
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var new_box = box_scene.instantiate()
 
 	boxes.add_child(new_box)
 	new_box.global_position = spawn_pos.global_position
+
+func _process(_delta: float) -> void:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
+		print("AH")
