@@ -29,7 +29,6 @@ sky = SubResource("Sky_gycf7")
 environment = SubResource("Environment_ndoh6")
 
 [sub_resource type="SphereMesh" id="SphereMesh_0o0ly"]
-material = ExtResource("5_vomw0")
 radial_segments = 128
 rings = 64
 
@@ -290,30 +289,46 @@ size = Vector2i(158, 50)
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="MeshType" type="TabBar" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+current_tab = 0
+tab_alignment = 1
+tab_count = 2
+tab_0/title = "Sphere"
+tab_1/title = "Box"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer2/SubViewportContainer"]
 own_world_3d = true
 world_3d = SubResource("World3D_uptr3")
 transparent_bg = true
 handle_input_locally = false
 msaa_3d = 3
 screen_space_aa = 1
-size = Vector2i(474, 382)
+size = Vector2i(474, 347)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/SubViewportContainer/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer2/SubViewportContainer/SubViewport"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/SubViewportContainer/SubViewport"]
-transform = Transform3D(-0.396613, 0, 0.917986, 0, 1, 0, -0.917986, 0, -0.396613, 0, 0, -1)
+[node name="Sphere" type="MeshInstance3D" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer2/SubViewportContainer/SubViewport"]
+unique_name_in_owner = true
+transform = Transform3D(-0.998301, 0, -0.0582705, 0, 1, 0, 0.0582705, 0, -0.998301, 0, 0, -1)
 mesh = SubResource("SphereMesh_0o0ly")
+surface_material_override/0 = ExtResource("5_vomw0")
 
 [connection signal="tab_changed" from="MarginContainer/TabContainer/Materials/VBoxContainer/TabBar" to="MarginContainer/TabContainer/Materials" method="_on_tab_bar_tab_changed"]
 [connection signal="color_changed" from="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Color/ColorPickerButton" to="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Color" method="_on_color_picker_button_color_changed"]
 [connection signal="gui_input" from="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Texture/TextureRect" to="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Texture" method="_on_texture_rect_gui_input"]
+[connection signal="tab_changed" from="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer2/MeshType" to="MarginContainer/TabContainer/Materials" method="_on_mesh_type_tab_changed"]
 
 [editable path="MarginContainer/TabContainer/World/VBoxContainer/PlatformSize"]
 [editable path="MarginContainer/TabContainer/World/VBoxContainer/SpawnOffset"]
