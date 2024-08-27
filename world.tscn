@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://n2b7g2sgt2f2"]
+[gd_scene load_steps=13 format=3 uid="uid://n2b7g2sgt2f2"]
 
 [ext_resource type="Texture2D" uid="uid://cshdijxf5xady" path="res://SkyHDR.hdr" id="1_bs4lu"]
 [ext_resource type="Script" path="res://world.gd" id="1_e1a2b"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://cam_pivot.gd" id="5_8nmvc"]
 [ext_resource type="Material" uid="uid://u5mj8po5xo5y" path="res://resources/platform_material.tres" id="5_20uhd"]
 [ext_resource type="PackedScene" uid="uid://bvr5nmb0qdd8i" path="res://ui.tscn" id="6_f3m38"]
+[ext_resource type="Script" path="res://overlay.gd" id="7_ry8su"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2jmea"]
 panorama = ExtResource("1_bs4lu")
@@ -58,14 +59,41 @@ transform = Transform3D(1, 0, 0, 0, 0.887011, 0.461749, 0, -0.461749, 0.887011, 
 [node name="Camera3D" type="Camera3D" parent="HPivot/VPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 39.005)
 
-[node name="UI" parent="." instance=ExtResource("6_f3m38")]
-
 [node name="Bounds" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bounds"]
 shape = SubResource("BoxShape3D_bo2bw")
 
+[node name="Overlay" type="Control" parent="." node_paths=PackedStringArray("box_parent")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_ry8su")
+box_parent = NodePath("../Boxes")
+
+[node name="Clear" type="Button" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_mode = 0
+text = "Clear"
+
+[node name="UI" parent="." instance=ExtResource("6_f3m38")]
+visible = false
+
+[connection signal="body_entered" from="Bounds" to="." method="_on_bounds_body_entered"]
+[connection signal="pressed" from="Overlay/Clear" to="Overlay" method="_on_clear_pressed"]
 [connection signal="box_collision_changed" from="UI" to="." method="_on_ui_box_collision_changed"]
 [connection signal="box_mesh_changed" from="UI" to="." method="_on_ui_box_mesh_changed"]
 [connection signal="box_size_changed" from="UI" to="." method="_on_ui_box_size_changed"]
@@ -77,4 +105,3 @@ shape = SubResource("BoxShape3D_bo2bw")
 [connection signal="ssao_toggled" from="UI" to="WorldEnvironment" method="_on_ui_ssao_toggled"]
 [connection signal="ssil_toggled" from="UI" to="WorldEnvironment" method="_on_ui_ssil_toggled"]
 [connection signal="ssr_toggled" from="UI" to="WorldEnvironment" method="_on_ui_ssr_toggled"]
-[connection signal="body_entered" from="Bounds" to="." method="_on_bounds_body_entered"]
