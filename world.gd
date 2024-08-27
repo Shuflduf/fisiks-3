@@ -44,10 +44,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_ui_platform_size_changed(new_size: int) -> void:
-	for i in boxes.get_children():
-		if i is not RigidBody3D:
-			continue
-		i.sleeping = false
+
 	set_platform_size(new_size)
 	platform_size = new_size
 
@@ -99,6 +96,11 @@ func set_platform_size(new_size: float):
 		)
 		mesh.mesh.size = collision.shape.size
 	elif collision.shape is CylinderShape3D:
-		collision.shape.radius = new_size
-		mesh.mesh.top_radius = new_size / 2.0
-		mesh.mesh.bottom_radius = mesh.mesh.top_radius
+		collision.shape.radius = new_size / 2.0
+		mesh.mesh.top_radius = collision.shape.radius
+		mesh.mesh.bottom_radius = collision.shape.radius
+
+	for i in boxes.get_children():
+		if i is not RigidBody3D:
+			continue
+		i.sleeping = false
