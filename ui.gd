@@ -31,6 +31,13 @@ signal box_bounce_changed(new_bounce: float)
 @warning_ignore("unused_signal")
 signal box_friction_changed(new_friction: float)
 
+@warning_ignore("unused_signal")
+signal cannon_speed_changed(new_speed: int)
+@warning_ignore("unused_signal")
+signal cannon_size_changed(new_size: float)
+@warning_ignore("unused_signal")
+signal cannon_mass_changed(new_mass: float)
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("options"):
 		visible = not visible

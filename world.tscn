@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://n2b7g2sgt2f2"]
+[gd_scene load_steps=17 format=3 uid="uid://n2b7g2sgt2f2"]
 
 [ext_resource type="Texture2D" uid="uid://cshdijxf5xady" path="res://SkyHDR.hdr" id="1_bs4lu"]
 [ext_resource type="Script" path="res://world.gd" id="1_e1a2b"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c2t146qpt7eb7" path="res://assets/textures/texture_08.png" id="5_feuq8"]
 [ext_resource type="PackedScene" uid="uid://bvr5nmb0qdd8i" path="res://ui.tscn" id="6_f3m38"]
 [ext_resource type="Script" path="res://overlay.gd" id="7_ry8su"]
+[ext_resource type="Script" path="res://cannon.gd" id="9_a2vie"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2jmea"]
 panorama = ExtResource("1_bs4lu")
@@ -26,8 +27,7 @@ glow_enabled = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_gn31a"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cklqh"]
-albedo_color = Color(0.201527, 0.201527, 0.201527, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2acit"]
 albedo_texture = ExtResource("5_feuq8")
 roughness = 0.0
 rim_tint = 1.0
@@ -55,7 +55,7 @@ shadow_enabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Platform"]
 mesh = SubResource("BoxMesh_gn31a")
-surface_material_override/0 = SubResource("StandardMaterial3D_cklqh")
+surface_material_override/0 = SubResource("StandardMaterial3D_2acit")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platform"]
 shape = SubResource("BoxShape3D_a0805")
@@ -80,6 +80,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bounds"]
 shape = SubResource("BoxShape3D_bo2bw")
+
+[node name="Cannon" type="Node3D" parent="."]
+script = ExtResource("9_a2vie")
 
 [node name="Overlay" type="Control" parent="." node_paths=PackedStringArray("box_parent")]
 layout_mode = 3
@@ -115,6 +118,9 @@ visible = false
 [connection signal="box_friction_changed" from="UI" to="." method="_on_ui_box_friction_changed"]
 [connection signal="box_mesh_changed" from="UI" to="." method="_on_ui_box_mesh_changed"]
 [connection signal="box_size_changed" from="UI" to="." method="_on_ui_box_size_changed"]
+[connection signal="cannon_mass_changed" from="UI" to="Cannon" method="_on_ui_cannon_mass_changed"]
+[connection signal="cannon_size_changed" from="UI" to="Cannon" method="_on_ui_cannon_size_changed"]
+[connection signal="cannon_speed_changed" from="UI" to="Cannon" method="_on_ui_cannon_speed_changed"]
 [connection signal="platform_shape_changed" from="UI" to="." method="_on_ui_platform_shape_changed"]
 [connection signal="platform_size_changed" from="UI" to="." method="_on_ui_platform_size_changed"]
 [connection signal="random_offset_changed" from="UI" to="." method="_on_ui_random_offset_changed"]

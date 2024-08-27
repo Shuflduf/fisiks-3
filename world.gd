@@ -20,10 +20,12 @@ func _ready() -> void:
 	set_platform_size(platform_size)
 
 func _physics_process(_delta: float) -> void:
-	var new_box: RigidBody3D = box_scene.instantiate()
+	boxes.add_child(get_new_box())
 
-	boxes.add_child(new_box)
-	new_box.global_position = spawn_pos.global_position
+
+func get_new_box() -> RigidBody3D:
+	var new_box: RigidBody3D = box_scene.instantiate()
+	new_box.position = spawn_pos.position
 	new_box.scale = Vector3(
 		box_size,
 		box_size,
@@ -44,7 +46,7 @@ func _physics_process(_delta: float) -> void:
 			randf_range(-PI, PI),
 			randf_range(-PI, PI)
 		)
-
+	return new_box
 
 func _on_ui_platform_size_changed(new_size: int) -> void:
 
