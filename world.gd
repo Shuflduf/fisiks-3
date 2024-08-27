@@ -117,3 +117,12 @@ func _on_ui_box_bounce_changed(new_bounce: float) -> void:
 
 func _on_ui_box_friction_changed(new_friction: float) -> void:
 	box_friction = new_friction
+
+
+func _on_clear_below_timer_timeout() -> void:
+	print("CLEAR")
+	for i in boxes.get_children():
+		if i is not RigidBody3D:
+			continue
+		if i.global_position.y < -10:
+			i.queue_free()

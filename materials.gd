@@ -43,7 +43,6 @@ func _on_mesh_type_tab_changed(tab: int) -> void:
 
 func _on_button_pressed() -> void:
 	for i in default_material.get_property_list():
-		print(i)
 		active_material.set(i["name"], default_material.get(i["name"]))
 
 	for i in $VBoxContainer/HBoxContainer2/VBoxContainer.get_children():

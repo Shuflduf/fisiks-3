@@ -27,7 +27,7 @@ glow_enabled = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_gn31a"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2acit"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l1tej"]
 albedo_texture = ExtResource("5_feuq8")
 roughness = 0.0
 rim_tint = 1.0
@@ -55,7 +55,7 @@ shadow_enabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Platform"]
 mesh = SubResource("BoxMesh_gn31a")
-surface_material_override/0 = SubResource("StandardMaterial3D_2acit")
+surface_material_override/0 = SubResource("StandardMaterial3D_l1tej")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platform"]
 shape = SubResource("BoxShape3D_a0805")
@@ -111,6 +111,10 @@ text = "Clear"
 [node name="UI" parent="." instance=ExtResource("6_f3m38")]
 visible = false
 
+[node name="ClearBelowTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [connection signal="body_entered" from="Bounds" to="." method="_on_bounds_body_entered"]
 [connection signal="pressed" from="Overlay/Clear" to="Overlay" method="_on_clear_pressed"]
 [connection signal="box_bounce_changed" from="UI" to="." method="_on_ui_box_bounce_changed"]
@@ -121,6 +125,7 @@ visible = false
 [connection signal="cannon_mass_changed" from="UI" to="Cannon" method="_on_ui_cannon_mass_changed"]
 [connection signal="cannon_size_changed" from="UI" to="Cannon" method="_on_ui_cannon_size_changed"]
 [connection signal="cannon_speed_changed" from="UI" to="Cannon" method="_on_ui_cannon_speed_changed"]
+[connection signal="cannon_voffset_changed" from="UI" to="Cannon" method="_on_ui_cannon_voffset_changed"]
 [connection signal="platform_shape_changed" from="UI" to="." method="_on_ui_platform_shape_changed"]
 [connection signal="platform_size_changed" from="UI" to="." method="_on_ui_platform_size_changed"]
 [connection signal="random_offset_changed" from="UI" to="." method="_on_ui_random_offset_changed"]
@@ -130,3 +135,4 @@ visible = false
 [connection signal="ssao_toggled" from="UI" to="WorldEnvironment" method="_on_ui_ssao_toggled"]
 [connection signal="ssil_toggled" from="UI" to="WorldEnvironment" method="_on_ui_ssil_toggled"]
 [connection signal="ssr_toggled" from="UI" to="WorldEnvironment" method="_on_ui_ssr_toggled"]
+[connection signal="timeout" from="ClearBelowTimer" to="." method="_on_clear_below_timer_timeout"]

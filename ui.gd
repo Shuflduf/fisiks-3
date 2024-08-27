@@ -37,6 +37,8 @@ signal cannon_speed_changed(new_speed: int)
 signal cannon_size_changed(new_size: float)
 @warning_ignore("unused_signal")
 signal cannon_mass_changed(new_mass: float)
+@warning_ignore("unused_signal")
+signal cannon_voffset_changed(new_offset: float)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("options"):

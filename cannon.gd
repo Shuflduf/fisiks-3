@@ -3,6 +3,7 @@ extends Node3D
 var speed = 100
 var mass_mult = 1.0
 var size_mult = 1.0
+var offset = 5.0
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("fire"):
@@ -10,7 +11,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		$"../Boxes".add_child(new_box)
 		new_box.global_position.z = get_parent().platform_size + 5
 		new_box.position = rotate_forwards(new_box.position)
-		new_box.global_position.y = 5
+		new_box.global_position.y = offset
 		new_box.mass *= mass_mult
 		new_box.scale *= size_mult
 
@@ -30,3 +31,7 @@ func _on_ui_cannon_size_changed(new_size: float) -> void:
 
 func _on_ui_cannon_speed_changed(new_speed: int) -> void:
 	speed = new_speed
+
+
+func _on_ui_cannon_voffset_changed(new_offset: float) -> void:
+	offset = new_offset
