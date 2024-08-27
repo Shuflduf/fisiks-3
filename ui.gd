@@ -8,6 +8,8 @@ signal spawn_offset_changed(new_offset: int)
 signal random_offset_changed(new_offset: float)
 @warning_ignore("unused_signal")
 signal random_rotation_toggled(enabled: bool)
+@warning_ignore("unused_signal")
+signal platform_shape_changed(new_shape: Shape3D, new_mesh: Mesh)
 
 @warning_ignore("unused_signal")
 signal ssr_toggled(enabled: bool)

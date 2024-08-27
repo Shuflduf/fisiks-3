@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bvr5nmb0qdd8i"]
+[gd_scene load_steps=22 format=3 uid="uid://bvr5nmb0qdd8i"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_862l2"]
 [ext_resource type="PackedScene" uid="uid://cqkiuh1yuoh88" path="res://base_value.tscn" id="2_7j7e7"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://box_settings.gd" id="4_4tfjs"]
 [ext_resource type="Script" path="res://materials.gd" id="4_bxap2"]
 [ext_resource type="Texture2D" uid="uid://cshdijxf5xady" path="res://SkyHDR.hdr" id="4_g3kld"]
+[ext_resource type="Script" path="res://option_property.gd" id="4_ujn74"]
 [ext_resource type="Material" uid="uid://u5mj8po5xo5y" path="res://resources/platform_material.tres" id="5_vomw0"]
 [ext_resource type="PackedScene" uid="uid://dw8q4v5pyxpc" path="res://property.tscn" id="6_8aoy8"]
 [ext_resource type="Material" uid="uid://bi4rxq06mgymg" path="res://resources/box_material.tres" id="6_mlroa"]
@@ -61,10 +62,9 @@ theme_override_constants/margin_bottom = 50
 
 [node name="TabContainer" type="TabContainer" parent="MarginContainer"]
 layout_mode = 2
-current_tab = 3
+current_tab = 0
 
 [node name="World" type="MarginContainer" parent="MarginContainer/TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
@@ -121,6 +121,25 @@ signal_name = "random_rotation_toggled"
 [node name="Label" parent="MarginContainer/TabContainer/World/VBoxContainer/RandomRotation" index="0"]
 text = "Random Rotation
 "
+
+[node name="PlatformShape" type="HBoxContainer" parent="MarginContainer/TabContainer/World/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("4_ujn74")
+signal_name = "platform_shape_changed"
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/World/VBoxContainer/PlatformShape"]
+layout_mode = 2
+text = "Platform Shape
+"
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/TabContainer/World/VBoxContainer/PlatformShape"]
+layout_mode = 2
+size_flags_horizontal = 10
+selected = 0
+item_count = 2
+popup/item_0/text = "Square"
+popup/item_1/text = "Cylinder"
+popup/item_1/id = 1
 
 [node name="Graphics" type="MarginContainer" parent="MarginContainer/TabContainer"]
 visible = false
@@ -237,6 +256,7 @@ value = 1.0
 
 [node name="Materials" type="MarginContainer" parent="MarginContainer/TabContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
@@ -390,16 +410,17 @@ handle_input_locally = false
 msaa_3d = 3
 screen_space_aa = 1
 size = Vector2i(474, 347)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="Camera3D" type="Camera3D" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer2/SubViewportContainer/SubViewport"]
 
 [node name="Sphere" type="MeshInstance3D" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer2/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
-transform = Transform3D(-0.774708, 0, -0.632319, 0, 1, 0, 0.632319, 0, -0.774708, 0, 0, -1)
+transform = Transform3D(-0.236845, 0, 0.971547, 0, 1, 0, -0.971547, 0, -0.236845, 0, 0, -1)
 mesh = SubResource("SphereMesh_8t72h")
 surface_material_override/0 = ExtResource("5_vomw0")
 
+[connection signal="item_selected" from="MarginContainer/TabContainer/World/VBoxContainer/PlatformShape/OptionButton" to="MarginContainer/TabContainer/World/VBoxContainer/PlatformShape" method="_on_option_button_item_selected"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/Box/VBoxContainer/MeshType/MeshOptionButton" to="MarginContainer/TabContainer/Box" method="_on_mesh_option_button_item_selected"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/Box/VBoxContainer/CollisionType/CollisionOptionButton" to="MarginContainer/TabContainer/Box" method="_on_collision_option_button_item_selected"]
 [connection signal="tab_changed" from="MarginContainer/TabContainer/Materials/VBoxContainer/TabBar" to="MarginContainer/TabContainer/Materials" method="_on_tab_bar_tab_changed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://n2b7g2sgt2f2"]
+[gd_scene load_steps=15 format=3 uid="uid://n2b7g2sgt2f2"]
 
 [ext_resource type="Texture2D" uid="uid://cshdijxf5xady" path="res://SkyHDR.hdr" id="1_bs4lu"]
 [ext_resource type="Script" path="res://world.gd" id="1_e1a2b"]
@@ -24,6 +24,10 @@ ssao_enabled = true
 ssil_enabled = true
 glow_enabled = true
 
+[sub_resource type="BoxMesh" id="BoxMesh_gn31a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a0805"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_bo2bw"]
 size = Vector3(300, 1, 300)
 
@@ -39,10 +43,14 @@ script = ExtResource("4_i2how")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Platform" type="CSGBox3D" parent="."]
-use_collision = true
-size = Vector3(30, 1, 30)
-material = ExtResource("5_20uhd")
+[node name="Platform" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform"]
+mesh = SubResource("BoxMesh_gn31a")
+surface_material_override/0 = ExtResource("5_20uhd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform"]
+shape = SubResource("BoxShape3D_a0805")
 
 [node name="SpawnPos" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
@@ -97,6 +105,7 @@ visible = false
 [connection signal="box_collision_changed" from="UI" to="." method="_on_ui_box_collision_changed"]
 [connection signal="box_mesh_changed" from="UI" to="." method="_on_ui_box_mesh_changed"]
 [connection signal="box_size_changed" from="UI" to="." method="_on_ui_box_size_changed"]
+[connection signal="platform_shape_changed" from="UI" to="." method="_on_ui_platform_shape_changed"]
 [connection signal="platform_size_changed" from="UI" to="." method="_on_ui_platform_size_changed"]
 [connection signal="random_offset_changed" from="UI" to="." method="_on_ui_random_offset_changed"]
 [connection signal="random_rotation_toggled" from="UI" to="." method="_on_ui_random_rotation_toggled"]

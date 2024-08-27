@@ -13,6 +13,10 @@ var box_size = 1.0
 var box_mesh: Mesh = BoxMesh.new()
 var box_collision: Shape3D = BoxShape3D.new()
 
+var platform_size = 30
+
+func _ready() -> void:
+	set_platform_size(platform_size)
 
 func _physics_process(_delta: float) -> void:
 	var new_box = box_scene.instantiate()
@@ -44,8 +48,8 @@ func _on_ui_platform_size_changed(new_size: int) -> void:
 		if i is not RigidBody3D:
 			continue
 		i.sleeping = false
-	$Platform.size.x = new_size
-	$Platform.size.z = new_size
+	set_platform_size(new_size)
+	platform_size = new_size
 
 
 func _on_bounds_body_entered(body: Node3D) -> void:
@@ -74,3 +78,27 @@ func _on_ui_box_collision_changed(new_collision: Shape3D) -> void:
 
 func _on_ui_box_mesh_changed(new_mesh: Mesh) -> void:
 	box_mesh = new_mesh
+
+
+func _on_ui_platform_shape_changed(new_shape: Shape3D, new_mesh: Mesh) -> void:
+	var collision = $Platform.find_child("CollisionShape3D")
+	var mesh = $Platform.find_child("MeshInstance3D")
+	collision.shape = new_shape
+	mesh.mesh = new_mesh
+	set_platform_size(platform_size)
+
+func set_platform_size(new_size: float):
+	var collision = $Platform.find_child("CollisionShape3D")
+	var mesh = $Platform.find_child("MeshInstance3D")
+
+	if collision.shape is BoxShape3D:
+		collision.shape.size = Vector3(
+			new_size,
+			1,
+			new_size
+		)
+		mesh.mesh.size = collision.shape.size
+	elif collision.shape is CylinderShape3D:
+		collision.shape.radius = new_size
+		mesh.mesh.top_radius = new_size / 2.0
+		mesh.mesh.bottom_radius = mesh.mesh.top_radius
