@@ -19,6 +19,10 @@ signal ssil_toggled(enabled: bool)
 signal sdfgi_toggled(enabled: bool)
 
 @warning_ignore("unused_signal")
+signal box_mesh_changed(new_mesh: Mesh)
+@warning_ignore("unused_signal")
+signal box_collision_changed(new_collision: Shape3D)
+@warning_ignore("unused_signal")
 signal box_size_changed(new_size: float)
 
 func _unhandled_input(event: InputEvent) -> void:

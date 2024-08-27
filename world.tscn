@@ -66,6 +66,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bounds"]
 shape = SubResource("BoxShape3D_bo2bw")
 
+[connection signal="box_collision_changed" from="UI" to="." method="_on_ui_box_collision_changed"]
+[connection signal="box_mesh_changed" from="UI" to="." method="_on_ui_box_mesh_changed"]
 [connection signal="box_size_changed" from="UI" to="." method="_on_ui_box_size_changed"]
 [connection signal="platform_size_changed" from="UI" to="." method="_on_ui_platform_size_changed"]
 [connection signal="random_offset_changed" from="UI" to="." method="_on_ui_random_offset_changed"]

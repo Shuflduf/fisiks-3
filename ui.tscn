@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://bvr5nmb0qdd8i"]
+[gd_scene load_steps=20 format=3 uid="uid://bvr5nmb0qdd8i"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_862l2"]
 [ext_resource type="PackedScene" uid="uid://cqkiuh1yuoh88" path="res://base_value.tscn" id="2_7j7e7"]
 [ext_resource type="PackedScene" uid="uid://dhih6qowjgi80" path="res://base_bool_value.tscn" id="3_2bo5g"]
+[ext_resource type="Script" path="res://box_settings.gd" id="4_4tfjs"]
 [ext_resource type="Script" path="res://materials.gd" id="4_bxap2"]
 [ext_resource type="Texture2D" uid="uid://cshdijxf5xady" path="res://SkyHDR.hdr" id="4_g3kld"]
 [ext_resource type="Material" uid="uid://u5mj8po5xo5y" path="res://resources/platform_material.tres" id="5_vomw0"]
@@ -169,6 +170,7 @@ theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
+script = ExtResource("4_4tfjs")
 metadata/_tab_index = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Box"]
@@ -182,7 +184,7 @@ layout_mode = 2
 layout_mode = 2
 text = "Mesh Type"
 
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/TabContainer/Box/VBoxContainer/MeshType"]
+[node name="MeshOptionButton" type="OptionButton" parent="MarginContainer/TabContainer/Box/VBoxContainer/MeshType"]
 layout_mode = 2
 size_flags_horizontal = 10
 selected = 0
@@ -198,7 +200,7 @@ layout_mode = 2
 layout_mode = 2
 text = "Collision Type"
 
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/TabContainer/Box/VBoxContainer/CollisionType"]
+[node name="CollisionOptionButton" type="OptionButton" parent="MarginContainer/TabContainer/Box/VBoxContainer/CollisionType"]
 layout_mode = 2
 size_flags_horizontal = 10
 selected = 0
@@ -216,13 +218,11 @@ text = "Size
 "
 
 [node name="ValueSlider" parent="MarginContainer/TabContainer/Box/VBoxContainer/Size" index="1"]
-min_value = 0.2
 max_value = 10.0
 step = 0.1
 value = 1.2
 
 [node name="ValueSpinBox" parent="MarginContainer/TabContainer/Box/VBoxContainer/Size" index="2"]
-min_value = 0.2
 max_value = 10.0
 step = 0.1
 value = 1.0
@@ -384,10 +384,12 @@ render_target_update_mode = 0
 
 [node name="Sphere" type="MeshInstance3D" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer2/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
-transform = Transform3D(-0.717238, 0, 0.696828, 0, 1, 0, -0.696828, 0, -0.717238, 0, 0, -1)
+transform = Transform3D(0.968381, 0, 0.249475, 0, 1, 0, -0.249475, 0, 0.968381, 0, 0, -1)
 mesh = SubResource("SphereMesh_8t72h")
 surface_material_override/0 = ExtResource("5_vomw0")
 
+[connection signal="item_selected" from="MarginContainer/TabContainer/Box/VBoxContainer/MeshType/MeshOptionButton" to="MarginContainer/TabContainer/Box" method="_on_mesh_option_button_item_selected"]
+[connection signal="item_selected" from="MarginContainer/TabContainer/Box/VBoxContainer/CollisionType/CollisionOptionButton" to="MarginContainer/TabContainer/Box" method="_on_collision_option_button_item_selected"]
 [connection signal="tab_changed" from="MarginContainer/TabContainer/Materials/VBoxContainer/TabBar" to="MarginContainer/TabContainer/Materials" method="_on_tab_bar_tab_changed"]
 [connection signal="color_changed" from="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Color/ColorPickerButton" to="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Color" method="_on_color_picker_button_color_changed"]
 [connection signal="gui_input" from="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Texture/TextureRect" to="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Texture" method="_on_texture_rect_gui_input"]

@@ -10,6 +10,10 @@ var random_rotation = false
 
 var box_size = 1.0
 
+var box_mesh: Mesh = BoxMesh.new()
+var box_collision: Shape3D = BoxShape3D.new()
+
+
 func _physics_process(_delta: float) -> void:
 	var new_box = box_scene.instantiate()
 
@@ -25,16 +29,14 @@ func _physics_process(_delta: float) -> void:
 		randf_range(-random_offset, random_offset),
 		randf_range(-random_offset, random_offset)
 	)
+	new_box.find_child("CollisionShape3D").shape = box_collision
+	new_box.find_child("MeshInstance3D").mesh = box_mesh
 	if random_rotation:
 		new_box.rotation = Vector3(
 			randf_range(-PI, PI),
 			randf_range(-PI, PI),
 			randf_range(-PI, PI)
 		)
-
-func _process(_delta: float) -> void:
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
-		print("AH")
 
 
 func _on_ui_platform_size_changed(new_size: int) -> void:
@@ -64,3 +66,11 @@ func _on_ui_random_rotation_toggled(enabled: bool) -> void:
 
 func _on_ui_box_size_changed(new_size: float) -> void:
 	box_size = new_size
+
+
+func _on_ui_box_collision_changed(new_collision: Shape3D) -> void:
+	box_collision = new_collision
+
+
+func _on_ui_box_mesh_changed(new_mesh: Mesh) -> void:
+	box_mesh = new_mesh
