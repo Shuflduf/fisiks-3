@@ -416,7 +416,7 @@ render_target_update_mode = 0
 
 [node name="Sphere" type="MeshInstance3D" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer2/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
-transform = Transform3D(-0.711406, 0, -0.70278, 0, 1, 0, 0.70278, 0, -0.711406, 0, 0, -1)
+transform = Transform3D(0.417267, 0, 0.908783, 0, 1, 0, -0.908783, 0, 0.417267, 0, 0, -1)
 mesh = SubResource("SphereMesh_8t72h")
 surface_material_override/0 = ExtResource("5_vomw0")
 

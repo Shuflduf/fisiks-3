@@ -4,14 +4,14 @@ extends HBoxContainer
 
 func _on_color_picker_button_color_changed(color: Color) -> void:
 	materials.active_material.set("albedo_color", color)
-	if color.a == 1.0:
+	if is_equal_approx(color.a, 1.0):
 		materials.active_material.transparency = BaseMaterial3D.Transparency.TRANSPARENCY_DISABLED
 	else:
 		materials.active_material.transparency = BaseMaterial3D.Transparency.TRANSPARENCY_ALPHA
 
 func update_values():
 	$ColorPickerButton.color = materials.active_material.get("albedo_color")
-	if $ColorPickerButton.color.a.is_approx:
+	if is_equal_approx($ColorPickerButton.color.a, 1.0):
 		materials.active_material.transparency = BaseMaterial3D.Transparency.TRANSPARENCY_DISABLED
 	else:
 		materials.active_material.transparency = BaseMaterial3D.Transparency.TRANSPARENCY_ALPHA
