@@ -40,11 +40,6 @@ func _on_mesh_type_tab_changed(tab: int) -> void:
 
 
 func _on_button_pressed() -> void:
-	#match $VBoxContainer/HBoxContainer2/VBoxContainer2/MeshType.current_tab:
-		#0:
-			#platform_material = default_material.duplicate()
-		#1:
-			#box_material = default_material.duplicate()
 	for i in default_material.get_property_list():
 		print(i)
 		active_material.set(i["name"], default_material.get(i["name"]))
