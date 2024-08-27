@@ -8,11 +8,18 @@ extends Node3D
 var random_offset = 1.0
 var random_rotation = false
 
+var box_size = 1.0
+
 func _physics_process(_delta: float) -> void:
 	var new_box = box_scene.instantiate()
 
 	boxes.add_child(new_box)
 	new_box.global_position = spawn_pos.global_position
+	new_box.scale = Vector3(
+		box_size,
+		box_size,
+		box_size
+	)
 	new_box.position += Vector3(
 		randf_range(-random_offset, random_offset),
 		randf_range(-random_offset, random_offset),
@@ -53,3 +60,7 @@ func _on_ui_random_offset_changed(new_offset: float) -> void:
 
 func _on_ui_random_rotation_toggled(enabled: bool) -> void:
 	random_rotation = enabled
+
+
+func _on_ui_box_size_changed(new_size: float) -> void:
+	box_size = new_size

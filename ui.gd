@@ -18,6 +18,9 @@ signal ssil_toggled(enabled: bool)
 @warning_ignore("unused_signal")
 signal sdfgi_toggled(enabled: bool)
 
+@warning_ignore("unused_signal")
+signal box_size_changed(new_size: float)
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("options"):
 		visible = not visible

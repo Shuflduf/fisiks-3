@@ -28,9 +28,7 @@ sky = SubResource("Sky_gycf7")
 [sub_resource type="World3D" id="World3D_uptr3"]
 environment = SubResource("Environment_ndoh6")
 
-[sub_resource type="SphereMesh" id="SphereMesh_0o0ly"]
-radial_segments = 128
-rings = 64
+[sub_resource type="SphereMesh" id="SphereMesh_8t72h"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -165,8 +163,73 @@ signal_name = "sdfgi_toggled"
 [node name="Label" parent="MarginContainer/TabContainer/Graphics/VBoxContainer/SDFGI" index="0"]
 text = "SDFGI"
 
+[node name="Box" type="MarginContainer" parent="MarginContainer/TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+metadata/_tab_index = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Box"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="MeshType" type="HBoxContainer" parent="MarginContainer/TabContainer/Box/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Box/VBoxContainer/MeshType"]
+layout_mode = 2
+text = "Mesh Type"
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/TabContainer/Box/VBoxContainer/MeshType"]
+layout_mode = 2
+size_flags_horizontal = 10
+selected = 0
+item_count = 2
+popup/item_0/text = "Box"
+popup/item_1/text = "Sphere"
+popup/item_1/id = 1
+
+[node name="CollisionType" type="HBoxContainer" parent="MarginContainer/TabContainer/Box/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Box/VBoxContainer/CollisionType"]
+layout_mode = 2
+text = "Collision Type"
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/TabContainer/Box/VBoxContainer/CollisionType"]
+layout_mode = 2
+size_flags_horizontal = 10
+selected = 0
+item_count = 2
+popup/item_0/text = "Box"
+popup/item_1/text = "Sphere"
+popup/item_1/id = 1
+
+[node name="Size" parent="MarginContainer/TabContainer/Box/VBoxContainer" instance=ExtResource("2_7j7e7")]
+layout_mode = 2
+signal_name = "box_size_changed"
+
+[node name="Label" parent="MarginContainer/TabContainer/Box/VBoxContainer/Size" index="0"]
+text = "Size
+"
+
+[node name="ValueSlider" parent="MarginContainer/TabContainer/Box/VBoxContainer/Size" index="1"]
+min_value = 0.2
+max_value = 10.0
+step = 0.1
+value = 1.2
+
+[node name="ValueSpinBox" parent="MarginContainer/TabContainer/Box/VBoxContainer/Size" index="2"]
+min_value = 0.2
+max_value = 10.0
+step = 0.1
+value = 1.0
+
 [node name="Materials" type="MarginContainer" parent="MarginContainer/TabContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
@@ -175,7 +238,7 @@ theme_override_constants/margin_bottom = 50
 script = ExtResource("4_bxap2")
 platform_material = ExtResource("5_vomw0")
 box_material = ExtResource("6_mlroa")
-metadata/_tab_index = 2
+metadata/_tab_index = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Materials"]
 layout_mode = 2
@@ -315,14 +378,14 @@ handle_input_locally = false
 msaa_3d = 3
 screen_space_aa = 1
 size = Vector2i(474, 347)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="Camera3D" type="Camera3D" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer2/SubViewportContainer/SubViewport"]
 
 [node name="Sphere" type="MeshInstance3D" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer2/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
-transform = Transform3D(-0.998301, 0, -0.0582705, 0, 1, 0, 0.0582705, 0, -0.998301, 0, 0, -1)
-mesh = SubResource("SphereMesh_0o0ly")
+transform = Transform3D(-0.717238, 0, 0.696828, 0, 1, 0, -0.696828, 0, -0.717238, 0, 0, -1)
+mesh = SubResource("SphereMesh_8t72h")
 surface_material_override/0 = ExtResource("5_vomw0")
 
 [connection signal="tab_changed" from="MarginContainer/TabContainer/Materials/VBoxContainer/TabBar" to="MarginContainer/TabContainer/Materials" method="_on_tab_bar_tab_changed"]
@@ -338,6 +401,7 @@ surface_material_override/0 = ExtResource("5_vomw0")
 [editable path="MarginContainer/TabContainer/Graphics/VBoxContainer/SSAO"]
 [editable path="MarginContainer/TabContainer/Graphics/VBoxContainer/SSIL"]
 [editable path="MarginContainer/TabContainer/Graphics/VBoxContainer/SDFGI"]
+[editable path="MarginContainer/TabContainer/Box/VBoxContainer/Size"]
 [editable path="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Metallic"]
 [editable path="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Roughness"]
 [editable path="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Specular"]
