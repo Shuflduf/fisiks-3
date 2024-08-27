@@ -9,7 +9,8 @@ var random_offset = 1.0
 var random_rotation = false
 
 var box_size = 1.0
-
+var box_bounce := 0.0
+var box_friction := 1.0
 var box_mesh: Mesh = BoxMesh.new()
 var box_collision: Shape3D = BoxShape3D.new()
 
@@ -19,7 +20,7 @@ func _ready() -> void:
 	set_platform_size(platform_size)
 
 func _physics_process(_delta: float) -> void:
-	var new_box = box_scene.instantiate()
+	var new_box: RigidBody3D = box_scene.instantiate()
 
 	boxes.add_child(new_box)
 	new_box.global_position = spawn_pos.global_position
@@ -33,6 +34,8 @@ func _physics_process(_delta: float) -> void:
 		randf_range(-random_offset, random_offset),
 		randf_range(-random_offset, random_offset)
 	)
+	new_box.physics_material_override.bounce = box_bounce
+	new_box.physics_material_override.friction = box_friction
 	new_box.find_child("CollisionShape3D").shape = box_collision
 	new_box.find_child("MeshInstance3D").mesh = box_mesh
 	if random_rotation:
@@ -104,3 +107,11 @@ func set_platform_size(new_size: float):
 		if i is not RigidBody3D:
 			continue
 		i.sleeping = false
+
+
+func _on_ui_box_bounce_changed(new_bounce: float) -> void:
+	box_bounce = new_bounce
+
+
+func _on_ui_box_friction_changed(new_friction: float) -> void:
+	box_friction = new_friction

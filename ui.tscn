@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://materials.gd" id="4_bxap2"]
 [ext_resource type="Texture2D" uid="uid://cshdijxf5xady" path="res://SkyHDR.hdr" id="4_g3kld"]
 [ext_resource type="Script" path="res://option_property.gd" id="4_ujn74"]
-[ext_resource type="Material" uid="uid://u5mj8po5xo5y" path="res://resources/platform_material.tres" id="5_vomw0"]
 [ext_resource type="PackedScene" uid="uid://dw8q4v5pyxpc" path="res://property.tscn" id="6_8aoy8"]
 [ext_resource type="Material" uid="uid://bi4rxq06mgymg" path="res://resources/box_material.tres" id="6_mlroa"]
 [ext_resource type="PackedScene" uid="uid://dxwdr57yppg5w" path="res://bool_property.tscn" id="7_dokbn"]
@@ -16,7 +15,15 @@
 [ext_resource type="Texture2D" uid="uid://c2t146qpt7eb7" path="res://assets/textures/texture_08.png" id="9_2hnf6"]
 [ext_resource type="Script" path="res://texture_property.gd" id="9_6dr4b"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mouo"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cklqh"]
+albedo_color = Color(0.201527, 0.201527, 0.201527, 1)
+albedo_texture = ExtResource("9_2hnf6")
+roughness = 0.0
+rim_tint = 1.0
+anisotropy = 1.0
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4jwee"]
 albedo_texture = ExtResource("9_2hnf6")
 roughness = 0.0
 rim_tint = 1.0
@@ -62,9 +69,10 @@ theme_override_constants/margin_bottom = 50
 
 [node name="TabContainer" type="TabContainer" parent="MarginContainer"]
 layout_mode = 2
-current_tab = 0
+current_tab = 2
 
 [node name="World" type="MarginContainer" parent="MarginContainer/TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
@@ -191,7 +199,6 @@ signal_name = "sdfgi_toggled"
 text = "SDFGI"
 
 [node name="Box" type="MarginContainer" parent="MarginContainer/TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
@@ -254,6 +261,50 @@ max_value = 10.0
 step = 0.1
 value = 1.0
 
+[node name="Bounciness" parent="MarginContainer/TabContainer/Box/VBoxContainer" instance=ExtResource("2_7j7e7")]
+layout_mode = 2
+signal_name = "box_bounce_changed"
+is_float = true
+
+[node name="Label" parent="MarginContainer/TabContainer/Box/VBoxContainer/Bounciness" index="0"]
+text = "Bounciness
+"
+
+[node name="ValueSlider" parent="MarginContainer/TabContainer/Box/VBoxContainer/Bounciness" index="1"]
+min_value = 0.0
+max_value = 1.0
+step = 0.01
+value = 0.0
+
+[node name="ValueSpinBox" parent="MarginContainer/TabContainer/Box/VBoxContainer/Bounciness" index="2"]
+min_value = 0.0
+max_value = 1.0
+step = 0.01
+value = 0.0
+suffix = ""
+
+[node name="Friction" parent="MarginContainer/TabContainer/Box/VBoxContainer" instance=ExtResource("2_7j7e7")]
+layout_mode = 2
+signal_name = "box_friction_changed"
+is_float = true
+
+[node name="Label" parent="MarginContainer/TabContainer/Box/VBoxContainer/Friction" index="0"]
+text = "Friction
+"
+
+[node name="ValueSlider" parent="MarginContainer/TabContainer/Box/VBoxContainer/Friction" index="1"]
+min_value = 0.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="ValueSpinBox" parent="MarginContainer/TabContainer/Box/VBoxContainer/Friction" index="2"]
+min_value = 0.0
+max_value = 1.0
+step = 0.001
+value = 1.0
+suffix = ""
+
 [node name="Materials" type="MarginContainer" parent="MarginContainer/TabContainer"]
 unique_name_in_owner = true
 visible = false
@@ -263,9 +314,9 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 script = ExtResource("4_bxap2")
-platform_material = ExtResource("5_vomw0")
+platform_material = SubResource("StandardMaterial3D_cklqh")
 box_material = ExtResource("6_mlroa")
-default_material = SubResource("StandardMaterial3D_7mouo")
+default_material = SubResource("StandardMaterial3D_4jwee")
 metadata/_tab_index = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Materials"]
@@ -416,9 +467,9 @@ render_target_update_mode = 0
 
 [node name="Sphere" type="MeshInstance3D" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer2/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
-transform = Transform3D(0.417267, 0, 0.908783, 0, 1, 0, -0.908783, 0, 0.417267, 0, 0, -1)
+transform = Transform3D(-0.830109, 0, -0.5576, 0, 1, 0, 0.5576, 0, -0.830109, 0, 0, -1)
 mesh = SubResource("SphereMesh_8t72h")
-surface_material_override/0 = ExtResource("5_vomw0")
+surface_material_override/0 = SubResource("StandardMaterial3D_cklqh")
 
 [connection signal="item_selected" from="MarginContainer/TabContainer/World/VBoxContainer/PlatformShape/OptionButton" to="MarginContainer/TabContainer/World/VBoxContainer/PlatformShape" method="_on_option_button_item_selected"]
 [connection signal="item_selected" from="MarginContainer/TabContainer/Box/VBoxContainer/MeshType/MeshOptionButton" to="MarginContainer/TabContainer/Box" method="_on_mesh_option_button_item_selected"]
@@ -438,6 +489,8 @@ surface_material_override/0 = ExtResource("5_vomw0")
 [editable path="MarginContainer/TabContainer/Graphics/VBoxContainer/SSIL"]
 [editable path="MarginContainer/TabContainer/Graphics/VBoxContainer/SDFGI"]
 [editable path="MarginContainer/TabContainer/Box/VBoxContainer/Size"]
+[editable path="MarginContainer/TabContainer/Box/VBoxContainer/Bounciness"]
+[editable path="MarginContainer/TabContainer/Box/VBoxContainer/Friction"]
 [editable path="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Metallic"]
 [editable path="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Roughness"]
 [editable path="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Specular"]

@@ -1,11 +1,11 @@
 extends HBoxContainer
 
 @export var signal_name: String
-
+@export var is_float = false
 
 
 func _on_value_slider_value_changed(value: float) -> void:
-	owner.emit_signal(signal_name, floori(value))
+	owner.emit_signal(signal_name, (floori(value) if !is_float else value))
 	$ValueSpinBox.value = value
 
 
