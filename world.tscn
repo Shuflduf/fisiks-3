@@ -1,11 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://n2b7g2sgt2f2"]
+[gd_scene load_steps=16 format=3 uid="uid://n2b7g2sgt2f2"]
 
 [ext_resource type="Texture2D" uid="uid://cshdijxf5xady" path="res://SkyHDR.hdr" id="1_bs4lu"]
 [ext_resource type="Script" path="res://world.gd" id="1_e1a2b"]
 [ext_resource type="PackedScene" uid="uid://bp7ddgwveia6k" path="res://box.tscn" id="2_qvrly"]
 [ext_resource type="Script" path="res://world_environment.gd" id="4_i2how"]
 [ext_resource type="Script" path="res://cam_pivot.gd" id="5_8nmvc"]
-[ext_resource type="Texture2D" uid="uid://c2t146qpt7eb7" path="res://assets/textures/texture_08.png" id="5_feuq8"]
+[ext_resource type="Material" uid="uid://u5mj8po5xo5y" path="res://resources/platform_material.tres" id="5_20uhd"]
 [ext_resource type="PackedScene" uid="uid://bvr5nmb0qdd8i" path="res://ui.tscn" id="6_f3m38"]
 [ext_resource type="Script" path="res://overlay.gd" id="7_ry8su"]
 [ext_resource type="Script" path="res://cannon.gd" id="9_a2vie"]
@@ -26,13 +26,6 @@ ssil_enabled = true
 glow_enabled = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_gn31a"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l1tej"]
-albedo_texture = ExtResource("5_feuq8")
-roughness = 0.0
-rim_tint = 1.0
-anisotropy = 1.0
-uv1_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a0805"]
 
@@ -55,7 +48,7 @@ shadow_enabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Platform"]
 mesh = SubResource("BoxMesh_gn31a")
-surface_material_override/0 = SubResource("StandardMaterial3D_l1tej")
+surface_material_override/0 = ExtResource("5_20uhd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platform"]
 shape = SubResource("BoxShape3D_a0805")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bvr5nmb0qdd8i"]
+[gd_scene load_steps=24 format=3 uid="uid://bvr5nmb0qdd8i"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_862l2"]
 [ext_resource type="PackedScene" uid="uid://cqkiuh1yuoh88" path="res://base_value.tscn" id="2_7j7e7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://materials.gd" id="4_bxap2"]
 [ext_resource type="Texture2D" uid="uid://cshdijxf5xady" path="res://SkyHDR.hdr" id="4_g3kld"]
 [ext_resource type="Script" path="res://option_property.gd" id="4_ujn74"]
+[ext_resource type="Material" uid="uid://u5mj8po5xo5y" path="res://resources/platform_material.tres" id="5_vomw0"]
 [ext_resource type="PackedScene" uid="uid://dw8q4v5pyxpc" path="res://property.tscn" id="6_8aoy8"]
 [ext_resource type="Material" uid="uid://bi4rxq06mgymg" path="res://resources/box_material.tres" id="6_mlroa"]
 [ext_resource type="PackedScene" uid="uid://dxwdr57yppg5w" path="res://bool_property.tscn" id="7_dokbn"]
@@ -15,13 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://c2t146qpt7eb7" path="res://assets/textures/texture_08.png" id="9_2hnf6"]
 [ext_resource type="Script" path="res://texture_property.gd" id="9_6dr4b"]
 [ext_resource type="Script" path="res://base_value.gd" id="15_ff0bf"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l1tej"]
-albedo_texture = ExtResource("9_2hnf6")
-roughness = 0.0
-rim_tint = 1.0
-anisotropy = 1.0
-uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vde1b"]
 albedo_texture = ExtResource("9_2hnf6")
@@ -45,6 +39,13 @@ sky = SubResource("Sky_gycf7")
 environment = SubResource("Environment_ndoh6")
 
 [sub_resource type="SphereMesh" id="SphereMesh_8t72h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_inx60"]
+albedo_texture = ExtResource("9_2hnf6")
+roughness = 0.0
+rim_tint = 1.0
+anisotropy = 1.0
+uv1_triplanar = true
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -317,7 +318,7 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 script = ExtResource("4_bxap2")
-platform_material = SubResource("StandardMaterial3D_l1tej")
+platform_material = ExtResource("5_vomw0")
 box_material = ExtResource("6_mlroa")
 default_material = SubResource("StandardMaterial3D_vde1b")
 metadata/_tab_index = 3
@@ -470,9 +471,9 @@ render_target_update_mode = 0
 
 [node name="Sphere" type="MeshInstance3D" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer2/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
-transform = Transform3D(-0.926368, 0, 0.376619, 0, 1, 0, -0.376619, 0, -0.926368, 0, 0, -1)
+transform = Transform3D(0.442211, 0, -0.89691, 0, 1, 0, 0.89691, 0, 0.442211, 0, 0, -1)
 mesh = SubResource("SphereMesh_8t72h")
-surface_material_override/0 = SubResource("StandardMaterial3D_l1tej")
+surface_material_override/0 = SubResource("StandardMaterial3D_inx60")
 
 [node name="Cannon" type="MarginContainer" parent="MarginContainer/TabContainer"]
 layout_mode = 2
