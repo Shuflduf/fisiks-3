@@ -24,7 +24,7 @@ ssil_enabled = true
 glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bo2bw"]
-size = Vector3(200, 1, 200)
+size = Vector3(300, 1, 300)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_e1a2b")

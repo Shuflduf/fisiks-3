@@ -14,3 +14,4 @@ shape = SubResource("BoxShape3D_c1eci")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_706c0")
+surface_material_override/0 = ExtResource("1_co4uk")

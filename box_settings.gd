@@ -1,9 +1,6 @@
 extends MarginContainer
 
-
-
 func _on_mesh_option_button_item_selected(index: int) -> void:
-	print(index)
 	match index:
 		0:
 			owner.box_mesh_changed.emit(BoxMesh.new())
