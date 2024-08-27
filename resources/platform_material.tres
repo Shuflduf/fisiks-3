@@ -6,4 +6,5 @@
 albedo_texture = ExtResource("1_lxty3")
 roughness = 0.0
 rim_tint = 1.0
+anisotropy = 1.0
 uv1_triplanar = true

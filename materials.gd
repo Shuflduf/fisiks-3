@@ -10,4 +10,16 @@ func _ready() -> void:
 	active_material = platform_material
 
 func _process(delta: float) -> void:
-	$HBoxContainer2/SubViewportContainer/SubViewport/MeshInstance3D.rotation.y += delta * 0.2
+	$VBoxContainer/HBoxContainer2/SubViewportContainer/SubViewport/MeshInstance3D\
+			.rotation.y += delta * 0.2
+
+
+func _on_tab_bar_tab_changed(tab: int) -> void:
+	match tab:
+		0:
+			active_material = platform_material
+		1:
+			active_material = box_material
+
+	for i in $VBoxContainer/HBoxContainer2/VBoxContainer.get_children():
+		i.update_values()

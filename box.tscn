@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bp7ddgwveia6k"]
+[gd_scene load_steps=4 format=3 uid="uid://bp7ddgwveia6k"]
+
+[ext_resource type="Material" uid="uid://bi4rxq06mgymg" path="res://resources/box_material.tres" id="1_co4uk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c1eci"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_706c0"]
+material = ExtResource("1_co4uk")
 
 [node name="RigidBody3D" type="RigidBody3D"]
 

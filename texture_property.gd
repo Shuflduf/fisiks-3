@@ -19,10 +19,13 @@ func _on_new_texture_rect_gui_input(event: InputEvent, texture_name: String) -> 
 	if event is InputEventMouseButton and event.is_pressed():
 		if event.button_mask == MOUSE_BUTTON_MASK_LEFT:
 			$TextureRect.texture = ResourceLoader.load("res://assets/textures/" + texture_name)
-			$"../../..".active_material.albedo_texture = $TextureRect.texture
+			%Materials.active_material.albedo_texture = $TextureRect.texture
 
 func _on_texture_rect_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		if event.button_mask == MOUSE_BUTTON_MASK_LEFT:
 			$TextureSelection.position = event.global_position
 			$TextureSelection.show()
+
+func update_values():
+	$TextureRect.texture = %Materials.active_material.get("albedo_texture")

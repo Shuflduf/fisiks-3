@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bvr5nmb0qdd8i"]
+[gd_scene load_steps=19 format=3 uid="uid://bvr5nmb0qdd8i"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_862l2"]
 [ext_resource type="PackedScene" uid="uid://cqkiuh1yuoh88" path="res://base_value.tscn" id="2_7j7e7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cshdijxf5xady" path="res://SkyHDR.hdr" id="4_g3kld"]
 [ext_resource type="Material" uid="uid://u5mj8po5xo5y" path="res://resources/platform_material.tres" id="5_vomw0"]
 [ext_resource type="PackedScene" uid="uid://dw8q4v5pyxpc" path="res://property.tscn" id="6_8aoy8"]
+[ext_resource type="Material" uid="uid://bi4rxq06mgymg" path="res://resources/box_material.tres" id="6_mlroa"]
 [ext_resource type="PackedScene" uid="uid://dxwdr57yppg5w" path="res://bool_property.tscn" id="7_dokbn"]
 [ext_resource type="Script" path="res://property_vector3.gd" id="8_70lip"]
 [ext_resource type="Script" path="res://color_property.gd" id="8_s2fwc"]
@@ -166,6 +167,7 @@ signal_name = "sdfgi_toggled"
 text = "SDFGI"
 
 [node name="Materials" type="MarginContainer" parent="MarginContainer/TabContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
@@ -173,133 +175,145 @@ theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 script = ExtResource("4_bxap2")
 platform_material = ExtResource("5_vomw0")
+box_material = ExtResource("6_mlroa")
 metadata/_tab_index = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/TabContainer/Materials"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Materials"]
+layout_mode = 2
+
+[node name="TabBar" type="TabBar" parent="MarginContainer/TabContainer/Materials/VBoxContainer"]
+layout_mode = 2
+current_tab = 0
+tab_count = 2
+tab_0/title = "Platform"
+tab_1/title = "Box"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/TabContainer/Materials/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Materials/HBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="Metallic" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer" instance=ExtResource("6_8aoy8")]
+[node name="Metallic" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer" instance=ExtResource("6_8aoy8")]
 layout_mode = 2
 property = "metallic"
 
-[node name="Label" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Metallic" index="0"]
+[node name="Label" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Metallic" index="0"]
 text = "Metallic"
 
-[node name="Roughness" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer" instance=ExtResource("6_8aoy8")]
+[node name="Roughness" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer" instance=ExtResource("6_8aoy8")]
 layout_mode = 2
 property = "roughness"
 
-[node name="Label" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Roughness" index="0"]
+[node name="Label" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Roughness" index="0"]
 text = "Roughness"
 
-[node name="Specular" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer" instance=ExtResource("6_8aoy8")]
+[node name="Specular" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer" instance=ExtResource("6_8aoy8")]
 layout_mode = 2
 property = "metallic_specular"
 
-[node name="Label" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Specular" index="0"]
+[node name="Label" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Specular" index="0"]
 text = "Specular"
 
-[node name="HSlider" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Specular" index="1"]
+[node name="HSlider" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Specular" index="1"]
 value = 0.5
 
-[node name="SpinBox" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Specular" index="2"]
+[node name="SpinBox" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Specular" index="2"]
 value = 0.5
 
-[node name="Clearcoat" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer" instance=ExtResource("7_dokbn")]
+[node name="Clearcoat" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer" instance=ExtResource("7_dokbn")]
 layout_mode = 2
 property = "clearcoat_enabled"
 
-[node name="Label" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Clearcoat" index="0"]
+[node name="Label" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Clearcoat" index="0"]
 text = "Clearcoat
 "
 
-[node name="Scale" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer" instance=ExtResource("6_8aoy8")]
+[node name="Scale" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer" instance=ExtResource("6_8aoy8")]
 layout_mode = 2
 script = ExtResource("8_70lip")
 property = "uv1_scale"
 
-[node name="Label" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Scale" index="0"]
+[node name="Label" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Scale" index="0"]
 text = "Texture Scale"
 
-[node name="HSlider" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Scale" index="1"]
+[node name="HSlider" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Scale" index="1"]
 min_value = 0.1
 max_value = 10.0
 step = 0.1
 value = 1.0
 
-[node name="SpinBox" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Scale" index="2"]
+[node name="SpinBox" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Scale" index="2"]
 min_value = 0.1
 max_value = 10.0
 step = 0.1
 value = 1.0
 
-[node name="Color" type="HBoxContainer" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer"]
+[node name="Color" type="HBoxContainer" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 script = ExtResource("8_s2fwc")
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Color"]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Color"]
 layout_mode = 2
 text = "Color
 "
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Color"]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Color"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 color = Color(1, 1, 1, 1)
 
-[node name="Texture" type="HBoxContainer" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer"]
+[node name="Texture" type="HBoxContainer" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 script = ExtResource("9_6dr4b")
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Texture"]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Texture"]
 layout_mode = 2
 text = "Texture
 "
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Texture"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Texture"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 10
 texture = ExtResource("9_2hnf6")
 expand_mode = 1
 
-[node name="TextureSelection" type="Popup" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Texture"]
+[node name="TextureSelection" type="Popup" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Texture"]
 size = Vector2i(158, 50)
 
-[node name="Textures" type="HBoxContainer" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Texture/TextureSelection"]
+[node name="Textures" type="HBoxContainer" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Texture/TextureSelection"]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/TabContainer/Materials/HBoxContainer2"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/SubViewportContainer"]
 own_world_3d = true
 world_3d = SubResource("World3D_uptr3")
 transparent_bg = true
 handle_input_locally = false
 msaa_3d = 3
 screen_space_aa = 1
-size = Vector2i(474, 417)
+size = Vector2i(474, 382)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/SubViewportContainer/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/SubViewportContainer/SubViewport"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/SubViewportContainer/SubViewport"]
-transform = Transform3D(0.135651, 0, 0.990757, 0, 1, 0, -0.990757, 0, 0.135651, 0, 0, -1)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.396613, 0, 0.917986, 0, 1, 0, -0.917986, 0, -0.396613, 0, 0, -1)
 mesh = SubResource("SphereMesh_0o0ly")
 
-[connection signal="color_changed" from="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Color/ColorPickerButton" to="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Color" method="_on_color_picker_button_color_changed"]
-[connection signal="gui_input" from="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Texture/TextureRect" to="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Texture" method="_on_texture_rect_gui_input"]
+[connection signal="tab_changed" from="MarginContainer/TabContainer/Materials/VBoxContainer/TabBar" to="MarginContainer/TabContainer/Materials" method="_on_tab_bar_tab_changed"]
+[connection signal="color_changed" from="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Color/ColorPickerButton" to="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Color" method="_on_color_picker_button_color_changed"]
+[connection signal="gui_input" from="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Texture/TextureRect" to="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Texture" method="_on_texture_rect_gui_input"]
 
 [editable path="MarginContainer/TabContainer/World/VBoxContainer/PlatformSize"]
 [editable path="MarginContainer/TabContainer/World/VBoxContainer/SpawnOffset"]
@@ -309,8 +323,8 @@ mesh = SubResource("SphereMesh_0o0ly")
 [editable path="MarginContainer/TabContainer/Graphics/VBoxContainer/SSAO"]
 [editable path="MarginContainer/TabContainer/Graphics/VBoxContainer/SSIL"]
 [editable path="MarginContainer/TabContainer/Graphics/VBoxContainer/SDFGI"]
-[editable path="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Metallic"]
-[editable path="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Roughness"]
-[editable path="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Specular"]
-[editable path="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Clearcoat"]
-[editable path="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Scale"]
+[editable path="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Metallic"]
+[editable path="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Roughness"]
+[editable path="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Specular"]
+[editable path="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Clearcoat"]
+[editable path="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer/Scale"]
