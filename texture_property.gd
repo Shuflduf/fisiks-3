@@ -11,7 +11,7 @@ func _ready() -> void:
 		new_texture.texture = ResourceLoader.load("res://assets/textures/" + i)
 		new_texture.name = i + "T"
 		new_texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		new_texture.custom_minimum_size = Vector2(100, 100)
+		new_texture.custom_minimum_size = Vector2(150, 150)
 		new_texture.gui_input.connect(_on_new_texture_rect_gui_input.bind(i))
 		$TextureSelection/Textures.add_child(new_texture)
 

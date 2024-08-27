@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bvr5nmb0qdd8i"]
+[gd_scene load_steps=18 format=3 uid="uid://bvr5nmb0qdd8i"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_862l2"]
 [ext_resource type="PackedScene" uid="uid://cqkiuh1yuoh88" path="res://base_value.tscn" id="2_7j7e7"]
@@ -8,6 +8,7 @@
 [ext_resource type="Material" uid="uid://u5mj8po5xo5y" path="res://resources/platform_material.tres" id="5_vomw0"]
 [ext_resource type="PackedScene" uid="uid://dw8q4v5pyxpc" path="res://property.tscn" id="6_8aoy8"]
 [ext_resource type="PackedScene" uid="uid://dxwdr57yppg5w" path="res://bool_property.tscn" id="7_dokbn"]
+[ext_resource type="Script" path="res://property_vector3.gd" id="8_70lip"]
 [ext_resource type="Script" path="res://color_property.gd" id="8_s2fwc"]
 [ext_resource type="Texture2D" uid="uid://c2t146qpt7eb7" path="res://assets/textures/texture_08.png" id="9_2hnf6"]
 [ext_resource type="Script" path="res://texture_property.gd" id="9_6dr4b"]
@@ -218,6 +219,26 @@ property = "clearcoat_enabled"
 text = "Clearcoat
 "
 
+[node name="Scale" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer" instance=ExtResource("6_8aoy8")]
+layout_mode = 2
+script = ExtResource("8_70lip")
+property = "uv1_scale"
+
+[node name="Label" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Scale" index="0"]
+text = "Texture Scale"
+
+[node name="HSlider" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Scale" index="1"]
+min_value = 0.1
+max_value = 10.0
+step = 0.1
+value = 1.0
+
+[node name="SpinBox" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Scale" index="2"]
+min_value = 0.1
+max_value = 10.0
+step = 0.1
+value = 1.0
+
 [node name="Color" type="HBoxContainer" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 script = ExtResource("8_s2fwc")
@@ -274,7 +295,7 @@ render_target_update_mode = 4
 [node name="Camera3D" type="Camera3D" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/SubViewportContainer/SubViewport"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MarginContainer/TabContainer/Materials/HBoxContainer2/SubViewportContainer/SubViewport"]
-transform = Transform3D(0.223836, 0, 0.974627, 0, 1, 0, -0.974627, 0, 0.223836, 0, 0, -1)
+transform = Transform3D(0.135651, 0, 0.990757, 0, 1, 0, -0.990757, 0, 0.135651, 0, 0, -1)
 mesh = SubResource("SphereMesh_0o0ly")
 
 [connection signal="color_changed" from="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Color/ColorPickerButton" to="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Color" method="_on_color_picker_button_color_changed"]
@@ -292,3 +313,4 @@ mesh = SubResource("SphereMesh_0o0ly")
 [editable path="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Roughness"]
 [editable path="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Specular"]
 [editable path="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Clearcoat"]
+[editable path="MarginContainer/TabContainer/Materials/HBoxContainer2/VBoxContainer/Scale"]
