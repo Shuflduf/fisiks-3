@@ -9,6 +9,7 @@ var active_material: StandardMaterial3D
 
 func _ready() -> void:
 	active_material = platform_material
+	_on_button_pressed()
 
 func _process(delta: float) -> void:
 	%Sphere.rotation.y += delta * 0.2
