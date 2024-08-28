@@ -1,11 +1,11 @@
 [gd_scene load_steps=16 format=3 uid="uid://n2b7g2sgt2f2"]
 
-[ext_resource type="Texture2D" uid="uid://cshdijxf5xady" path="res://assets/SkyHDR.hdr" id="1_bs4lu"]
+[ext_resource type="Texture2D" uid="uid://cshdijxf5xady" path="res://Assets/SkyHDR.hdr" id="1_bs4lu"]
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_e1a2b"]
 [ext_resource type="PackedScene" uid="uid://bp7ddgwveia6k" path="res://Scenes/box.tscn" id="2_qvrly"]
 [ext_resource type="Script" path="res://Scripts/world_environment.gd" id="4_i2how"]
 [ext_resource type="Script" path="res://Scripts/cam_pivot.gd" id="5_8nmvc"]
-[ext_resource type="Material" uid="uid://u5mj8po5xo5y" path="res://resources/platform_material.tres" id="5_20uhd"]
+[ext_resource type="Material" uid="uid://u5mj8po5xo5y" path="res://Resources/platform_material.tres" id="5_20uhd"]
 [ext_resource type="PackedScene" uid="uid://bvr5nmb0qdd8i" path="res://Scenes/ui.tscn" id="6_f3m38"]
 [ext_resource type="Script" path="res://Scripts/overlay.gd" id="7_ry8su"]
 [ext_resource type="Script" path="res://Scripts/cannon.gd" id="9_a2vie"]

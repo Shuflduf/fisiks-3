@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bp7ddgwveia6k"]
 
-[ext_resource type="Material" uid="uid://bi4rxq06mgymg" path="res://resources/box_material.tres" id="1_co4uk"]
+[ext_resource type="Material" uid="uid://bi4rxq06mgymg" path="res://Resources/box_material.tres" id="1_co4uk"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ma4ta"]
 
