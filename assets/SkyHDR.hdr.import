@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bajgtmlqrlhjv"
-path.s3tc="res://.godot/imported/texture_09.png-3717f72c30c929f45d3cbcae68ad8927.s3tc.ctex"
+uid="uid://cshdijxf5xady"
+path.bptc="res://.godot/imported/SkyHDR.hdr-2d2dfbc0cc11ac6db5324859acf03717.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://texture_09.png"
-dest_files=["res://.godot/imported/texture_09.png-3717f72c30c929f45d3cbcae68ad8927.s3tc.ctex"]
+source_file="res://assets/SkyHDR.hdr"
+dest_files=["res://.godot/imported/SkyHDR.hdr-2d2dfbc0cc11ac6db5324859acf03717.bptc.ctex"]
 
 [params]
 

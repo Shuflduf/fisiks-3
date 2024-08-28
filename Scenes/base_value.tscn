@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cqkiuh1yuoh88"]
 
-[ext_resource type="Script" path="res://base_value.gd" id="1_t3tky"]
+[ext_resource type="Script" path="res://Scripts/base_value.gd" id="1_t3tky"]
 
 [node name="Value" type="HBoxContainer"]
 script = ExtResource("1_t3tky")

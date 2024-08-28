@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dxwdr57yppg5w"]
 
-[ext_resource type="Script" path="res://bool_property.gd" id="1_ccbxj"]
+[ext_resource type="Script" path="res://Scripts/bool_property.gd" id="1_ccbxj"]
 
 [node name="BoolProperty" type="HBoxContainer"]
 script = ExtResource("1_ccbxj")

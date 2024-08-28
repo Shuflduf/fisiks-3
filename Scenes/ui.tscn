@@ -1,21 +1,21 @@
 [gd_scene load_steps=23 format=3 uid="uid://bvr5nmb0qdd8i"]
 
-[ext_resource type="Script" path="res://ui.gd" id="1_862l2"]
-[ext_resource type="PackedScene" uid="uid://cqkiuh1yuoh88" path="res://base_value.tscn" id="2_7j7e7"]
-[ext_resource type="PackedScene" uid="uid://dhih6qowjgi80" path="res://base_bool_value.tscn" id="3_2bo5g"]
-[ext_resource type="Script" path="res://box_settings.gd" id="4_4tfjs"]
-[ext_resource type="Script" path="res://materials.gd" id="4_bxap2"]
-[ext_resource type="Texture2D" uid="uid://cshdijxf5xady" path="res://SkyHDR.hdr" id="4_g3kld"]
-[ext_resource type="Script" path="res://option_property.gd" id="4_ujn74"]
+[ext_resource type="Script" path="res://Scripts/ui.gd" id="1_862l2"]
+[ext_resource type="PackedScene" uid="uid://cqkiuh1yuoh88" path="res://Scenes/base_value.tscn" id="2_7j7e7"]
+[ext_resource type="PackedScene" uid="uid://dhih6qowjgi80" path="res://Scenes/base_bool_value.tscn" id="3_2bo5g"]
+[ext_resource type="Script" path="res://Scripts/box_settings.gd" id="4_4tfjs"]
+[ext_resource type="Script" path="res://Scripts/materials.gd" id="4_bxap2"]
+[ext_resource type="Texture2D" uid="uid://cshdijxf5xady" path="res://assets/SkyHDR.hdr" id="4_g3kld"]
+[ext_resource type="Script" path="res://Scripts/option_property.gd" id="4_ujn74"]
 [ext_resource type="Material" uid="uid://u5mj8po5xo5y" path="res://resources/platform_material.tres" id="5_vomw0"]
-[ext_resource type="PackedScene" uid="uid://dw8q4v5pyxpc" path="res://property.tscn" id="6_8aoy8"]
+[ext_resource type="PackedScene" uid="uid://dw8q4v5pyxpc" path="res://Scenes/property.tscn" id="6_8aoy8"]
 [ext_resource type="Material" uid="uid://bi4rxq06mgymg" path="res://resources/box_material.tres" id="6_mlroa"]
-[ext_resource type="PackedScene" uid="uid://dxwdr57yppg5w" path="res://bool_property.tscn" id="7_dokbn"]
-[ext_resource type="Script" path="res://property_vector3.gd" id="8_70lip"]
-[ext_resource type="Script" path="res://color_property.gd" id="8_s2fwc"]
+[ext_resource type="PackedScene" uid="uid://dxwdr57yppg5w" path="res://Scenes/bool_property.tscn" id="7_dokbn"]
+[ext_resource type="Script" path="res://Scripts/property_vector3.gd" id="8_70lip"]
+[ext_resource type="Script" path="res://Scripts/color_property.gd" id="8_s2fwc"]
 [ext_resource type="Texture2D" uid="uid://c2t146qpt7eb7" path="res://assets/textures/texture_08.png" id="9_2hnf6"]
-[ext_resource type="Script" path="res://texture_property.gd" id="9_6dr4b"]
-[ext_resource type="Script" path="res://base_value.gd" id="15_ff0bf"]
+[ext_resource type="Script" path="res://Scripts/texture_property.gd" id="9_6dr4b"]
+[ext_resource type="Script" path="res://Scripts/base_value.gd" id="15_ff0bf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vde1b"]
 albedo_texture = ExtResource("9_2hnf6")
@@ -465,7 +465,7 @@ render_target_update_mode = 0
 
 [node name="Sphere" type="MeshInstance3D" parent="MarginContainer/TabContainer/Materials/VBoxContainer/HBoxContainer2/VBoxContainer2/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
-transform = Transform3D(-0.446913, 0, -0.894577, 0, 1, 0, 0.894577, 0, -0.446913, 0, 0, -1)
+transform = Transform3D(-0.129199, 0, -0.991618, 0, 1, 0, 0.991618, 0, -0.129199, 0, 0, -1)
 mesh = SubResource("SphereMesh_8t72h")
 surface_material_override/0 = ExtResource("5_vomw0")
 

@@ -11,13 +11,17 @@ config_version=5
 [application]
 
 config/name="Fisiks 3"
-run/main_scene="res://world.tscn"
+run/main_scene="res://Scenes/world.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
+
+[editor]
+
+movie_writer/movie_file="C:/Users/Computer/Documents/Godot/fisiks-3/out.avi"
 
 [editor_plugins]
 
