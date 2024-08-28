@@ -1,4 +1,4 @@
-extends "res://base_value.gd"
+extends "res://Scripts/base_value.gd"
 
 
 func _on_option_button_item_selected(index: int) -> void:
