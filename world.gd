@@ -20,6 +20,11 @@ var platform_size = 30
 
 func _ready() -> void:
 	set_platform_size(platform_size)
+	var ev := InputEventAction.new()
+	ev.action = "cycle_debug_menu"
+	ev.pressed = true
+	Input.parse_input_event(ev)
+
 
 func _physics_process(_delta: float) -> void:
 	if emmiting:

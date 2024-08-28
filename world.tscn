@@ -99,6 +99,11 @@ offset_top = -59.0
 grow_horizontal = 0
 grow_vertical = 0
 
+[node name="BoxCount" type="Label" parent="Overlay/VBoxContainer"]
+layout_mode = 2
+text = "null Boxes"
+horizontal_alignment = 1
+
 [node name="Toggle" type="CheckButton" parent="Overlay/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
