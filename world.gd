@@ -8,6 +8,8 @@ extends Node3D
 var random_offset = 1.0
 var random_rotation = false
 
+var emmiting = true
+
 var box_size = 1.0
 var box_bounce := 0.0
 var box_friction := 1.0
@@ -20,7 +22,8 @@ func _ready() -> void:
 	set_platform_size(platform_size)
 
 func _physics_process(_delta: float) -> void:
-	boxes.add_child(get_new_box())
+	if emmiting:
+		boxes.add_child(get_new_box())
 
 
 func get_new_box() -> RigidBody3D:
@@ -126,3 +129,8 @@ func _on_clear_below_timer_timeout() -> void:
 			continue
 		if i.global_position.y < -10:
 			i.queue_free()
+
+
+
+func _on_toggle_toggled(toggled_on: bool) -> void:
+	emmiting = toggled_on

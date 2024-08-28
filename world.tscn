@@ -87,17 +87,26 @@ grow_vertical = 2
 script = ExtResource("7_ry8su")
 box_parent = NodePath("../Boxes")
 
-[node name="Clear" type="Button" parent="Overlay"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Overlay"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -8.0
-offset_top = -8.0
+offset_left = -49.0
+offset_top = -59.0
 grow_horizontal = 0
 grow_vertical = 0
+
+[node name="Toggle" type="CheckButton" parent="Overlay/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+button_pressed = true
+text = "Spawning"
+
+[node name="Clear" type="Button" parent="Overlay/VBoxContainer"]
+layout_mode = 2
 focus_mode = 0
 text = "Clear"
 
@@ -109,7 +118,8 @@ wait_time = 5.0
 autostart = true
 
 [connection signal="body_entered" from="Bounds" to="." method="_on_bounds_body_entered"]
-[connection signal="pressed" from="Overlay/Clear" to="Overlay" method="_on_clear_pressed"]
+[connection signal="toggled" from="Overlay/VBoxContainer/Toggle" to="." method="_on_toggle_toggled"]
+[connection signal="pressed" from="Overlay/VBoxContainer/Clear" to="Overlay" method="_on_clear_pressed"]
 [connection signal="box_bounce_changed" from="UI" to="." method="_on_ui_box_bounce_changed"]
 [connection signal="box_collision_changed" from="UI" to="." method="_on_ui_box_collision_changed"]
 [connection signal="box_friction_changed" from="UI" to="." method="_on_ui_box_friction_changed"]

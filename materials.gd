@@ -5,6 +5,8 @@ extends MarginContainer
 @export var box_material: StandardMaterial3D
 @export var default_material: StandardMaterial3D
 
+@export var material_properties: Array[String]
+
 var active_material: StandardMaterial3D
 
 func _ready() -> void:
@@ -42,8 +44,8 @@ func _on_mesh_type_tab_changed(tab: int) -> void:
 
 
 func _on_button_pressed() -> void:
-	for i in default_material.get_property_list():
-		active_material.set(i["name"], default_material.get(i["name"]))
+	for i in material_properties:
+		active_material.set(i, default_material.get(i))
 
 	for i in $VBoxContainer/HBoxContainer2/VBoxContainer.get_children():
 		if i.has_method("update_values"):
